@@ -1,0 +1,8 @@
+.wrapper {
+  background-image: url("../../assets/images/PageNotFound.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  min-height: 90vh;
+}

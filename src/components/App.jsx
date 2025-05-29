@@ -1,14 +1,17 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
+import PageNotFound from "../pages/PageNotFound/PageNotFound";
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 
