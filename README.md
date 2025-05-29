@@ -12,7 +12,6 @@ Detailed technical assignment (Ukrainian version): [Technical Task](https://docs
 - React Router
 - Firebase Authentication & Realtime Database
 - React Hook Form & Yup
-- ***
 
 ## 💡 Responsive Layout
 
