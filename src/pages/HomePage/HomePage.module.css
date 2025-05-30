@@ -1,0 +1,131 @@
+.header {
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 102%;
+  letter-spacing: -0.02em;
+  color: #191a15;
+  font-style: normal;
+}
+
+.accent {
+  font-style: italic;
+  color: #54be96;
+}
+
+.text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: #191a15;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  width: 510px;
+}
+
+.container {
+  display: flex;
+  gap: 5vw;
+  margin-top: 78px;
+}
+
+.left {
+  width: 595px;
+  align-content: center;
+}
+
+.image {
+  width: 464px;
+  height: 526px;
+}
+
+.infoBox {
+  border-radius: 20px;
+  width: 311px;
+  height: 118px;
+  background: #54be96;
+  position: absolute;
+  bottom: 75px;
+  right: 254px;
+}
+
+.infoContent {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  gap: 16px;
+}
+.iconWrapper {
+  border-radius: 13px;
+  width: 54px;
+  height: 54px;
+  background: #fbfbfb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  fill: #54be96;
+}
+
+.infoNumber {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 24px;
+  color: #fbfbfb;
+}
+
+.infoText {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(251, 251, 251, 0.5);
+  padding-bottom: 8px;
+}
+
+.question {
+  position: absolute;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  background: #4535af;
+  transform: rotate(-15deg);
+  bottom: 292px;
+  right: 454px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconQ {
+  fill: #fbfbfb;
+  transform: rotate(15deg);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 464px;
+  height: 526px;
+}
+
+.users {
+  position: absolute;
+  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  background: #fbc75e;
+  transform: rotate(15deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 446px;
+  right: -35px;
+}
+
+.iconU {
+  transform: rotate(-15deg);
+  fill: #fbfbfb;
+}

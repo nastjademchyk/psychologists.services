@@ -1,0 +1,14 @@
+.btn {
+  border-radius: 30px;
+  padding: 18px 50px;
+  width: 235px;
+  height: 60px;
+  background: #54be96;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  border: none;
+}
