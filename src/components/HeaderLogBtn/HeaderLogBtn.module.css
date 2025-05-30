@@ -1,0 +1,15 @@
+.btn {
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  background-color: transparent;
+  border-radius: 30px;
+  padding: 14px 39px;
+  height: 48px;
+  text-align: center;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #191a15;
+  cursor: pointer;
+}

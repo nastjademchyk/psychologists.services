@@ -1,6 +1,12 @@
 .wrapper {
   padding-top: 24px;
   padding-bottom: 24px;
+  padding-left: 128px;
+  padding-right: 128px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(25, 26, 21, 0.1);
 }
 
 .logo {
@@ -11,9 +17,34 @@
   letter-spacing: -0.02em;
   color: #54be96;
   font-weight: 500;
+  margin-right: 130px;
 }
 
 span {
   font-weight: 600;
   color: #191a15;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+}
+
+.nav_name {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #191a15;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
