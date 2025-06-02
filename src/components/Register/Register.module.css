@@ -39,6 +39,7 @@
   letter-spacing: -0.02em;
   color: #191a15;
   margin-bottom: 20px;
+  width: 438px;
 }
 
 .text {
@@ -48,6 +49,7 @@
   line-height: 125%;
   color: rgba(25, 26, 21, 0.5);
   margin-bottom: 40px;
+  width: 438px;
 }
 
 .input::placeholder {

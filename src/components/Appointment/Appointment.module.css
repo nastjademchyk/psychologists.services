@@ -1,3 +1,119 @@
 .wrapper {
   padding: 64px;
 }
+
+.header {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #191a15;
+  margin-bottom: 20px;
+  width: 472px;
+}
+.text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: rgba(25, 26, 21, 0.5);
+  margin-bottom: 40px;
+  width: 472px;
+}
+
+.psychologist {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8a8a89;
+}
+
+.psychologistName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #191a15;
+}
+
+.input {
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  width: 472px;
+  height: 52px;
+}
+
+.textarea {
+  resize: none;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  width: 472px;
+  height: 116px;
+}
+
+.inputPhoneTime {
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  padding: 16px 16px 16px 18px;
+  width: 232px;
+  height: 52px;
+}
+
+.phone_time {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  border-radius: 30px;
+  padding: 16px 217px;
+  width: 472px;
+  height: 52px;
+  background: #54be96;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  border: none;
+}
+
+.yourChoice {
+  margin-bottom: 40px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  line-height: 1;
+}
+
+.input::placeholder {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #191a15;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.fieldWrapper:last-of-type {
+  margin-bottom: 40px;
+}

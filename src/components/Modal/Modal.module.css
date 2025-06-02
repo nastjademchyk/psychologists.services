@@ -10,13 +10,18 @@
 
 .modal {
   border-radius: 30px;
-  width: 565px;
+  min-width: 565px;
   min-height: 509px;
+  max-height: 600px;
   background: #fbfbfb;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal_close_btn {
@@ -27,4 +32,31 @@
   background-color: transparent;
   padding: 0;
   cursor: pointer;
+}
+
+.modalContent {
+  overflow-y: auto;
+  box-sizing: border-box;
+  max-height: 100%;
+}
+
+.modalContent::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 30px;
+  margin: 20px 0;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background-color: rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(25, 26, 21, 0.4);
 }
