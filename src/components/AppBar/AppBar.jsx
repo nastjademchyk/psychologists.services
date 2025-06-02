@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import s from "./AppBar.module.css";
 import HeaderLogBtn from "../HeaderLogBtn/HeaderLogBtn";
 import clsx from "clsx";
@@ -7,6 +7,10 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+
+const buildLinkClass = ({ isActive }) => {
+  return clsx(s.nav_name, isActive && s.active);
+};
 
 const AppBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -24,25 +28,25 @@ const AppBar = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.left}>
-        <Link to="/" className={s.logo}>
+        <NavLink to="/" className={s.logo}>
           psychologists.<span>services</span>
-        </Link>
+        </NavLink>
         <nav>
           <ul className={s.nav}>
             <li className={s.nav_name}>
-              <Link to="/" className={s.nav_name}>
+              <NavLink to="/" className={buildLinkClass}>
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className={s.nav_name}>
-              <Link to="/psychologists" className={s.nav_name}>
+              <NavLink to="/psychologists" className={buildLinkClass}>
                 Psychologists
-              </Link>
+              </NavLink>
             </li>
             <li className={s.nav_name}>
-              <Link to="/favorites" className={s.nav_name}>
+              <NavLink to="/favorites" className={buildLinkClass}>
                 Favorites
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
