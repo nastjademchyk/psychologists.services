@@ -11,7 +11,17 @@
   letter-spacing: -0.01em;
   color: #fbfbfb;
   border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+  white-space: nowrap;
 }
 .btn:hover {
   background: #36a379;
+}
+
+.icon {
+  fill: #fbfbfb;
+  stroke-width: 2px;
 }
