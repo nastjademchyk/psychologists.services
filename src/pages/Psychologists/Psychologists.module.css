@@ -1,0 +1,30 @@
+.filter {
+  border-radius: 14px;
+  padding-left: 18px;
+  padding-top: 14px;
+
+  padding-bottom: 14px;
+  width: 226px;
+  height: 48px;
+  background: #54be96;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: #fbfbfb;
+  border: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 64px;
+}
+.text {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
+  padding-bottom: 8px;
+}
