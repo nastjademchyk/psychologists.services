@@ -1,8 +1,8 @@
 import s from "./GetStartBtn.module.css";
 
-const GetStartBtn = () => {
+const GetStartBtn = ({ onClick }) => {
   return (
-    <button className={s.btn} type="button">
+    <button onClick={onClick} className={s.btn} type="button">
       Get started
     </button>
   );

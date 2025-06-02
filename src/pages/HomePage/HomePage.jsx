@@ -3,6 +3,10 @@ import homex1 from "../../assets/images/home-x1.png";
 import homex2 from "../../assets/images/home-x2.png";
 import GetStartBtn from "../../components/GetStartBtn/GetStartBtn";
 import sprite from "../../assets/icons.svg";
+import { useState } from "react";
+import Register from "../../components/Register/Register";
+import Modal from "../../components/Modal/Modal";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -16,7 +20,9 @@ const HomePage = () => {
           We help you to reveal your potential, overcome challenges and find a
           guide in your own life with the help of our experienced psychologists.
         </p>
-        <GetStartBtn />
+        <Link to="/psychologists">
+          <GetStartBtn />
+        </Link>
       </div>
       <div className={s.right}>
         <div className={s.imageWrapper}>

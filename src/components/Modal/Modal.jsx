@@ -1,7 +1,8 @@
 import s from "./Modal.module.css";
 import sprite from "../../assets/icons.svg";
+import { useEffect } from "react";
 
-const Modal = ({ onClose }) => {
+const Modal = ({ onClose, children }) => {
   const handleClose = () => {
     onClose();
   };
@@ -11,6 +12,19 @@ const Modal = ({ onClose }) => {
       onClose();
     }
   };
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [onClose]);
+
   return (
     <div className={s.backdrop} onClick={handleBackDropClick}>
       <div className={s.modal}>
@@ -43,6 +57,7 @@ const Modal = ({ onClose }) => {
             />
           </svg>
         </button>
+        {children}
       </div>
     </div>
   );

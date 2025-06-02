@@ -12,3 +12,6 @@
   color: #fbfbfb;
   border: none;
 }
+.btn:hover {
+  background: #36a379;
+}
