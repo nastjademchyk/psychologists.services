@@ -61,7 +61,7 @@ const Register = () => {
               type="password"
               name="password"
               className={clsx(s.password, s.input)}
-              placeholder="password"
+              placeholder="Password"
             />
             <ErrorMessage name="email" component="span" className={s.error} />
           </div>
