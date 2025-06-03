@@ -23,7 +23,7 @@ const FeedbackSchema = Yup.object().shape({
   textarea: Yup.string().required("Required"),
 });
 
-const Appointment = () => {
+const Appointment = ({ psychologist }) => {
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
@@ -38,7 +38,7 @@ const Appointment = () => {
       </p>
       <div className={s.yourChoice}>
         <p className={s.psychologist}>Your psychologists</p>
-        <p className={s.psychologistName}>Dr. Sarah Davis</p>
+        <p className={s.psychologistName}>{psychologist.name}</p>
       </div>
 
       <Formik
