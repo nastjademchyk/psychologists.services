@@ -2,6 +2,8 @@ import clsx from "clsx";
 import s from "./Login.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { logIn } from "../../redux/auth/operations";
+import { useNavigate } from "react-router-dom";
 
 const FeedbackSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email!").required("Required"),
@@ -11,14 +13,30 @@ const FeedbackSchema = Yup.object().shape({
     .max(50, "Password is too long"),
 });
 
-const Login = () => {
+const Login = ({ onClose, onLoginSuccess }) => {
   const initialValues = {
     email: "",
     password: "",
   };
-  const handleSubmit = (values, actions) => {
-    console.log(values);
-    actions.resetForm();
+  const navigate = useNavigate();
+  const handleSubmit = async (values, actions) => {
+    try {
+      const user = await logIn(values.email, values.password);
+      console.log("Успішний вхід:", user);
+      actions.resetForm();
+      if (onLoginSuccess) onLoginSuccess();
+      if (onClose) onClose();
+      navigate("/favorites");
+    } catch (error) {
+      console.error("Помилка входу:", error.code);
+      if (error.code === "auth/user-not-found") {
+        alert("Користувача з такою поштою не знайдено.");
+      } else if (error.code === "auth/wrong-password") {
+        alert("Неправильний пароль.");
+      } else {
+        alert("Не вдалося увійти. Спробуйте ще раз.");
+      }
+    }
   };
 
   return (

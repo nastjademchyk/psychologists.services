@@ -2,6 +2,8 @@ import s from "./Register.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import clsx from "clsx";
 import * as Yup from "yup";
+import { register } from "../../redux/auth/operations";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -20,10 +22,29 @@ const FeedbackSchema = Yup.object().shape({
     .max(50, "Password is too long"),
 });
 
-const Register = () => {
-  const handleSubmit = (values, actions) => {
-    console.log(values);
-    actions.resetForm();
+const Register = ({ onClose, onLoginSuccess }) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values, actions) => {
+    try {
+      const user = await register(values.email, values.password);
+      console.log("Користувач зареєстрований:", user);
+      actions.resetForm();
+      if (onLoginSuccess) onLoginSuccess();
+      if (onClose) onClose();
+      navigate("/favorites");
+    } catch (error) {
+      console.error("Помилка реєстрації:", error.code);
+      if (error.code === "auth/email-already-in-use") {
+        alert("Ця електронна пошта вже використовується.");
+      } else if (error.code === "auth/invalid-email") {
+        alert("Невірний формат електронної пошти.");
+      } else if (error.code === "auth/weak-password") {
+        alert("Пароль занадто слабкий (мінімум 6 символів).");
+      } else {
+        alert("Сталася помилка при реєстрації.");
+      }
+    }
   };
   return (
     <div className={s.wrapper}>
@@ -63,7 +84,11 @@ const Register = () => {
               className={clsx(s.password, s.input)}
               placeholder="Password"
             />
-            <ErrorMessage name="email" component="span" className={s.error} />
+            <ErrorMessage
+              name="password"
+              component="span"
+              className={s.error}
+            />
           </div>
           <button type="submit" className={s.btn}>
             Sign Up

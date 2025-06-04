@@ -7,7 +7,8 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-
+import { logOut } from "../../redux/auth/operations";
+import { useNavigate } from "react-router-dom";
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.nav_name, isActive && s.active);
 };
@@ -16,6 +17,7 @@ const AppBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleOpen = (type) => {
     setAuthType(type);
@@ -23,6 +25,17 @@ const AppBar = () => {
   };
   const handleClose = () => {
     setModalIsOpen(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      setIsLoggedIn(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Помилка при виході:", error);
+      alert("Не вдалося вийти. Спробуйте ще раз.");
+    }
   };
 
   return (
@@ -52,15 +65,33 @@ const AppBar = () => {
         </nav>
       </div>
       <div className={s.buttons}>
-        <HeaderLogBtn
-          onClick={() => handleOpen("login")}
-          text="Log In"
-          className={s.btn}
-        />
+        {isLoggedIn ? (
+          <HeaderLogBtn
+            onClick={handleLogout}
+            text="Log Out"
+            className={s.btn}
+          />
+        ) : (
+          <HeaderLogBtn
+            onClick={() => handleOpen("login")}
+            text="Log In"
+            className={s.btn}
+          />
+        )}
         <GreenBtn text="Registration" onClick={handleOpen} />
         {modalIsOpen && (
           <Modal onClose={handleClose}>
-            {authType === "login" ? <Login /> : <Register />}
+            {authType === "login" ? (
+              <Login
+                onClose={handleClose}
+                onLoginSuccess={() => setIsLoggedIn(true)}
+              />
+            ) : (
+              <Register
+                onClose={handleClose}
+                onLoginSuccess={() => setIsLoggedIn(true)}
+              />
+            )}
           </Modal>
         )}
       </div>
