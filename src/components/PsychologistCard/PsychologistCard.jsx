@@ -1,11 +1,13 @@
 import s from "./PsychologistCard.module.css";
 import sprite from "../../assets/icons.svg";
+import Heart from "../Heart/Heart";
 
 const PsychologistCard = ({
   psychologist,
   isExpanded,
   onToggle,
   onOpenModal,
+  psychologistIndex,
 }) => {
   return (
     <li className={s.item}>
@@ -35,12 +37,14 @@ const PsychologistCard = ({
             <svg className={s.icon} width="22" height="22">
               <use href={`${sprite}#icon-star`} />
             </svg>
+
             <p className={s.rating}>Rating: {psychologist.rating}</p>
             <span className={s.divider}></span>
             <p className={s.rating}>
               Price / 1 hour:{" "}
               <span className={s.price}>{psychologist.price_per_hour}$</span>
             </p>
+            <Heart psychologistIndex={psychologistIndex} />
           </div>
         </div>
 

@@ -1,0 +1,18 @@
+.icon {
+  stroke: #191a15;
+  fill: transparent;
+  transition: fill 0.3s ease;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin-left: 28px;
+}
+
+.active {
+  fill: #54be96;
+  border: none;
+  stroke: none;
+}

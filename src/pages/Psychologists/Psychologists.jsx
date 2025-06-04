@@ -67,6 +67,7 @@ const Psychologists = () => {
             isExpanded={expandedIndexes.includes(index)}
             onToggle={() => toggleExpanded(index)}
             onOpenModal={openModal}
+            psychologistIndex={index}
           />
         ))}
       </ul>
