@@ -7,6 +7,7 @@ import { fetchPsychologists } from "../../redux/operations";
 import Modal from "../../components/Modal/Modal";
 import Appointment from "../../components/Appointment/Appointment";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard";
+import Loader from "../../components/Loader/Loader";
 
 const Psychologists = () => {
   const [expandedIndexes, setExpandedIndexes] = useState([]);
@@ -56,7 +57,7 @@ const Psychologists = () => {
         </Form>
       </Formik>
 
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {error && <p>Error: {error}</p>}
 
       <ul className={s.list}>
