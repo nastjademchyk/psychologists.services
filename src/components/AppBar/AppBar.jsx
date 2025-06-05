@@ -63,11 +63,13 @@ const AppBar = () => {
                 Psychologists
               </NavLink>
             </li>
-            <li className={s.nav_name}>
-              <NavLink to="/favorites" className={buildLinkClass}>
-                Favorites
-              </NavLink>
-            </li>
+            {isLoggedIn && (
+              <li className={s.nav_name}>
+                <NavLink to="/favorites" className={buildLinkClass}>
+                  Favorites
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
