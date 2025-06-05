@@ -4,6 +4,7 @@ import clsx from "clsx";
 import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const initialValues = {
   name: "",
@@ -24,25 +25,31 @@ const FeedbackSchema = Yup.object().shape({
 
 const Register = ({ onClose }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (values, actions) => {
     try {
-      const user = await register(values.email, values.password);
-      console.log("Користувач зареєстрований:", user);
-      actions.resetForm();
-      if (onClose) onClose();
-      navigate("/favorites");
-    } catch (error) {
-      console.error("Помилка реєстрації:", error.code);
-      if (error.code === "auth/email-already-in-use") {
-        alert("Ця електронна пошта вже використовується.");
-      } else if (error.code === "auth/invalid-email") {
-        alert("Невірний формат електронної пошти.");
-      } else if (error.code === "auth/weak-password") {
-        alert("Пароль занадто слабкий (мінімум 6 символів).");
+      const resultAction = await dispatch(register(values));
+      if (register.fulfilled.match(resultAction)) {
+        actions.resetForm();
+        if (onClose) onClose();
+        navigate("/favorites");
+      } else if (register.rejected.match(resultAction)) {
+        const errorCode = resultAction.payload?.code;
+        if (errorCode === "auth/email-already-in-use") {
+          alert("Ця електронна пошта вже використовується.");
+        } else if (errorCode === "auth/invalid-email") {
+          alert("Невірний формат електронної пошти.");
+        } else if (errorCode === "auth/weak-password") {
+          alert("Пароль занадто слабкий (мінімум 6 символів).");
+        } else {
+          alert("Сталася помилка при реєстрації.");
+        }
       } else {
         alert("Сталася помилка при реєстрації.");
       }
+    } catch (error) {
+      alert("Сталася помилка при реєстрації.");
     }
   };
   return (

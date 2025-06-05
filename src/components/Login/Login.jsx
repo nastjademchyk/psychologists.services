@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { logIn } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const FeedbackSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email!").required("Required"),
@@ -14,6 +15,7 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 const Login = ({ onClose, onLoginSuccess }) => {
+  const dispatch = useDispatch();
   const initialValues = {
     email: "",
     password: "",
@@ -21,21 +23,19 @@ const Login = ({ onClose, onLoginSuccess }) => {
   const navigate = useNavigate();
   const handleSubmit = async (values, actions) => {
     try {
-      const user = await logIn(values.email, values.password);
-      console.log("Успішний вхід:", user);
-      actions.resetForm();
-      if (onLoginSuccess) onLoginSuccess();
-      if (onClose) onClose();
-      navigate("/favorites");
-    } catch (error) {
-      console.error("Помилка входу:", error.code);
-      if (error.code === "auth/user-not-found") {
-        alert("Користувача з такою поштою не знайдено.");
-      } else if (error.code === "auth/wrong-password") {
-        alert("Неправильний пароль.");
+      const resultAction = await dispatch(logIn(values));
+      if (logIn.fulfilled.match(resultAction)) {
+        actions.resetForm();
+        if (onLoginSuccess) onLoginSuccess();
+        if (onClose) onClose();
+        navigate("/favorites");
+      } else if (logIn.rejected.match(resultAction)) {
+        alert(resultAction.payload || "Login failed");
       } else {
-        alert("Не вдалося увійти. Спробуйте ще раз.");
+        alert("Login failed");
       }
+    } catch (error) {
+      alert("Не вдалося увійти. Спробуйте ще раз.");
     }
   };
 

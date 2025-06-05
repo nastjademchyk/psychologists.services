@@ -10,7 +10,8 @@ import Register from "../Register/Register";
 import { logOut } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
 import sprite from "../../assets/icons.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.nav_name, isActive && s.active);
@@ -19,7 +20,10 @@ const buildLinkClass = ({ isActive }) => {
 const AppBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [authType, setAuthType] = useState("login");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleOpen = (type) => {
@@ -32,8 +36,8 @@ const AppBar = () => {
 
   const handleLogout = async () => {
     try {
-      await logOut();
-      setIsLoggedIn(false);
+      await dispatch(logOut());
+
       navigate("/");
     } catch (error) {
       console.error("Помилка при виході:", error);
@@ -78,7 +82,7 @@ const AppBar = () => {
                     <use href={`${sprite}#icon-user`} />
                   </svg>
                 </div>
-                <p className={s.userName}>Name</p>
+                <p className={s.userName}>{user?.displayName || "Name"}</p>
               </div>
             </div>
             <div className={s.rightBtns}>
@@ -109,15 +113,9 @@ const AppBar = () => {
         {modalIsOpen && (
           <Modal onClose={handleClose}>
             {authType === "login" ? (
-              <Login
-                onClose={handleClose}
-                onLoginSuccess={() => setIsLoggedIn(true)}
-              />
+              <Login onClose={handleClose} />
             ) : (
-              <Register
-                onClose={handleClose}
-                onLoginSuccess={() => setIsLoggedIn(true)}
-              />
+              <Register onClose={handleClose} />
             )}
           </Modal>
         )}

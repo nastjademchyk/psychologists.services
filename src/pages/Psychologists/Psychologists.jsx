@@ -8,6 +8,11 @@ import Modal from "../../components/Modal/Modal";
 import Appointment from "../../components/Appointment/Appointment";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard";
 import Loader from "../../components/Loader/Loader";
+import {
+  selectPsychologists,
+  selectIsLoading,
+  selectError,
+} from "../../redux/psychologists/selectors";
 
 const Psychologists = () => {
   const [expandedIndexes, setExpandedIndexes] = useState([]);
@@ -16,7 +21,9 @@ const Psychologists = () => {
   const filterId = useId();
   const dispatch = useDispatch();
 
-  const { items, loading, error } = useSelector((state) => state.psychologists);
+  const items = useSelector(selectPsychologists);
+  const loading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchPsychologists());
@@ -59,7 +66,9 @@ const Psychologists = () => {
 
       {loading && <Loader />}
       {error && <p>Error: {error}</p>}
-
+      {!loading && !error && items.length === 0 && (
+        <p className={s.noPsychologists}>No psychologists found.</p>
+      )}
       <ul className={s.list}>
         {items.map((psychologist, index) => (
           <PsychologistCard

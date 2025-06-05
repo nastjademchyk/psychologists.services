@@ -3,3 +3,7 @@
   padding-left: clamp(16px, 8vw, 128px);
   padding-right: clamp(16px, 8vw, 128px);
 }
+
+.loader {
+  margin-top: 100px;
+}
