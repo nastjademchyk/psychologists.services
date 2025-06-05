@@ -9,6 +9,9 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import { logOut } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
+import sprite from "../../assets/icons.svg";
+import { useSelector } from "react-redux";
+
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.nav_name, isActive && s.active);
 };
@@ -64,21 +67,45 @@ const AppBar = () => {
           </ul>
         </nav>
       </div>
+
       <div className={s.buttons}>
         {isLoggedIn ? (
-          <HeaderLogBtn
-            onClick={handleLogout}
-            text="Log Out"
-            className={s.btn}
-          />
+          <>
+            <div className={s.leftBtns}>
+              <div className={s.nameWithIcon}>
+                <div className={s.userIcon}>
+                  <svg width="24" height="24" className={s.icon}>
+                    <use href={`${sprite}#icon-user`} />
+                  </svg>
+                </div>
+                <p className={s.userName}>Name</p>
+              </div>
+            </div>
+            <div className={s.rightBtns}>
+              <HeaderLogBtn
+                onClick={handleLogout}
+                text="Log Out"
+                className={s.btn}
+              />
+            </div>
+          </>
         ) : (
-          <HeaderLogBtn
-            onClick={() => handleOpen("login")}
-            text="Log In"
-            className={s.btn}
-          />
+          <>
+            <div className={s.leftBtns}>
+              <HeaderLogBtn
+                onClick={() => handleOpen("login")}
+                text="Log In"
+                className={s.btn}
+              />
+            </div>
+            <div className={s.rightBtns}>
+              <GreenBtn
+                text="Registration"
+                onClick={() => handleOpen("register")}
+              />
+            </div>
+          </>
         )}
-        <GreenBtn text="Registration" onClick={handleOpen} />
         {modalIsOpen && (
           <Modal onClose={handleClose}>
             {authType === "login" ? (

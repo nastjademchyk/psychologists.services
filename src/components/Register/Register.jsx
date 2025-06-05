@@ -22,7 +22,7 @@ const FeedbackSchema = Yup.object().shape({
     .max(50, "Password is too long"),
 });
 
-const Register = ({ onClose, onLoginSuccess }) => {
+const Register = ({ onClose }) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
@@ -30,7 +30,6 @@ const Register = ({ onClose, onLoginSuccess }) => {
       const user = await register(values.email, values.password);
       console.log("Користувач зареєстрований:", user);
       actions.resetForm();
-      if (onLoginSuccess) onLoginSuccess();
       if (onClose) onClose();
       navigate("/favorites");
     } catch (error) {

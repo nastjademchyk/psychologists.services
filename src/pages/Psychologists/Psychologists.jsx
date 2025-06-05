@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import s from "./Psychologists.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useId } from "react";
-import { fetchPsychologists } from "../../redux/operations";
+import { fetchPsychologists } from "../../redux/psychologists/operations";
 import Modal from "../../components/Modal/Modal";
 import Appointment from "../../components/Appointment/Appointment";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard";

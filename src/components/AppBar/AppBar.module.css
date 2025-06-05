@@ -66,3 +66,35 @@ span {
   width: 8px;
   height: 8px;
 }
+
+.userIcon {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  background: #54be96;
+}
+
+.icon {
+  fill: #fbfbfb;
+}
+
+.nameWithIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #191a15;
+  padding-left: 14px;
+  padding-right: 28px;
+}

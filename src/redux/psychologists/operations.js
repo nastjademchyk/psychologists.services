@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getDatabase, ref, get } from "firebase/database";
-import { app } from "../firebase.js";
+import { app } from "../../firebase.js";
 
 export const fetchPsychologists = createAsyncThunk(
   "psychologists/fetchAll",

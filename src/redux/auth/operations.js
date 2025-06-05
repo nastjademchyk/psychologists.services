@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase.js";
 
-export const register = async (email, password) => {
+export const register = async (email, password, name) => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
