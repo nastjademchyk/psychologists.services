@@ -2,14 +2,28 @@ import s from "./Heart.module.css";
 import sprite from "../../assets/icons.svg";
 import clsx from "clsx";
 import { useState } from "react";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const Heart = ({ psychologistIndex }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isFavorite, setIsFavorite] = useState(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     return favorites.includes(psychologistIndex);
   });
 
   const toggleFavorite = () => {
+    if (!isLoggedIn) {
+      iziToast.show({
+        message: "Please log in or sign up to add to favorites.",
+        position: "topCenter",
+        color: "red",
+      });
+      return;
+    }
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     let updatedFavorites;
 
