@@ -1,6 +1,6 @@
 import s from "./PsychologistCard.module.css";
 import sprite from "../../assets/icons.svg";
-import Heart from "../Heart/Heart";
+import Heart from "../../components/Heart/Heart";
 
 const PsychologistCard = ({
   psychologist,
@@ -44,7 +44,7 @@ const PsychologistCard = ({
               Price / 1 hour:{" "}
               <span className={s.price}>{psychologist.price_per_hour}$</span>
             </p>
-            <Heart psychologistIndex={psychologistIndex} />
+            <Heart psychologist={psychologist} />
           </div>
         </div>
 

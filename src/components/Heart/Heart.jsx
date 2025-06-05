@@ -8,11 +8,16 @@ import "izitoast/dist/css/iziToast.min.css";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
-const Heart = ({ psychologistIndex }) => {
+const Heart = ({ psychologist }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  if (!psychologist) {
+    return null;
+  }
+  const { name } = psychologist;
+
   const [isFavorite, setIsFavorite] = useState(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    return favorites.includes(psychologistIndex);
+    return favorites.includes(name);
   });
 
   const toggleFavorite = () => {
@@ -24,17 +29,14 @@ const Heart = ({ psychologistIndex }) => {
       });
       return;
     }
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    let updatedFavorites;
 
-    if (favorites.includes(psychologistIndex)) {
-      updatedFavorites = favorites.filter((id) => id !== psychologistIndex);
-    } else {
-      updatedFavorites = [...favorites, psychologistIndex];
-    }
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedFavorites = favorites.includes(name)
+      ? favorites.filter((n) => n !== name)
+      : [...favorites, name];
 
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    setIsFavorite((prev) => !prev);
+    setIsFavorite(!isFavorite);
   };
 
   return (

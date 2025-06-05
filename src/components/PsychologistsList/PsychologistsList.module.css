@@ -1,1 +1,37 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
 
+.noPsychologists {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #191a15;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  margin-top: 40px;
+}
+
+.end {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #191a15;
+}
+
+.endWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  margin-top: 64px;
+}
