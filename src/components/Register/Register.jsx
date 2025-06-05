@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const initialValues = {
   name: "",
@@ -37,16 +39,26 @@ const Register = ({ onClose }) => {
       } else if (register.rejected.match(resultAction)) {
         const errorCode = resultAction.payload?.code;
         if (errorCode === "auth/email-already-in-use") {
-          alert("Ця електронна пошта вже використовується.");
-        } else if (errorCode === "auth/invalid-email") {
-          alert("Невірний формат електронної пошти.");
+          iziToast.show({
+            message: "This email is already in use.",
+            position: "topCenter",
+            color: "red",
+          });
         } else if (errorCode === "auth/weak-password") {
           alert("Пароль занадто слабкий (мінімум 6 символів).");
         } else {
-          alert("Сталася помилка при реєстрації.");
+          iziToast.show({
+            message: "An error occurred during registration.",
+            position: "topCenter",
+            color: "red",
+          });
         }
       } else {
-        alert("Сталася помилка при реєстрації.");
+        iziToast.show({
+          message: "An error occurred during registration.",
+          position: "topCenter",
+          color: "red",
+        });
       }
     } catch (error) {
       alert("Сталася помилка при реєстрації.");

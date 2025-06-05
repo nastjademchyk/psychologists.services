@@ -13,10 +13,12 @@ import {
   selectIsLoading,
   selectError,
 } from "../../redux/psychologists/selectors";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
 
 const Psychologists = () => {
   const [expandedIndexes, setExpandedIndexes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
   const [selectedPsychologist, setSelectedPsychologist] = useState(null);
   const filterId = useId();
   const dispatch = useDispatch();
@@ -47,22 +49,24 @@ const Psychologists = () => {
 
   return (
     <div>
-      <Formik>
-        <Form className={s.form}>
-          <label htmlFor={filterId} className={s.text}>
-            Filters
-          </label>
-          <Field as="select" name="filter" className={s.filter} id={filterId}>
-            <option value="a-z">A to Z</option>
-            <option value="z-a">Z to A</option>
-            <option value="lt-10">Less than 10$</option>
-            <option value="gt-10">Greater than 10$</option>
-            <option value="popular">Popular</option>
-            <option value="not-popular">Not popular</option>
-            <option value="all">Show all</option>
-          </Field>
-        </Form>
-      </Formik>
+      {!loading && visibleCount < items.length && (
+        <Formik>
+          <Form className={s.form}>
+            <label htmlFor={filterId} className={s.text}>
+              Filters
+            </label>
+            <Field as="select" name="filter" className={s.filter} id={filterId}>
+              <option value="a-z">A to Z</option>
+              <option value="z-a">Z to A</option>
+              <option value="lt-10">Less than 10$</option>
+              <option value="gt-10">Greater than 10$</option>
+              <option value="popular">Popular</option>
+              <option value="not-popular">Not popular</option>
+              <option value="all">Show all</option>
+            </Field>
+          </Form>
+        </Formik>
+      )}
 
       {loading && <Loader />}
       {error && <p>Error: {error}</p>}
@@ -70,7 +74,7 @@ const Psychologists = () => {
         <p className={s.noPsychologists}>No psychologists found.</p>
       )}
       <ul className={s.list}>
-        {items.map((psychologist, index) => (
+        {items.slice(0, visibleCount).map((psychologist, index) => (
           <PsychologistCard
             key={index}
             psychologist={psychologist}
@@ -80,6 +84,11 @@ const Psychologists = () => {
             psychologistIndex={index}
           />
         ))}
+        {!loading && visibleCount < items.length && (
+          <div className={s.btnWrapper}>
+            <LoadMoreBtn onClick={() => setVisibleCount((prev) => prev + 3)} />
+          </div>
+        )}
       </ul>
 
       {isModalOpen && (
