@@ -78,12 +78,21 @@ const PsychologistCard = ({
           <div className={s.reviews}>
             {psychologist.reviews?.map((review, i) => (
               <div key={i} className={s.reviewItem}>
-                <p className={s.reviewer}>{review.reviewer}</p>
-                <div className={s.starRating}>
-                  <svg className={s.icon} width="22" height="22">
-                    <use href={`${sprite}#icon-star`} />
-                  </svg>
-                  <p className={s.reviewerRating}>{review.rating}</p>
+                <div className={s.wrap}>
+                  <div className={s.left}>
+                    <div className={s.circle}>
+                      <p className={s.letter}>{review.reviewer.slice(0, 1)}</p>
+                    </div>
+                  </div>
+                  <div className={s.right}>
+                    <p className={s.reviewer}>{review.reviewer}</p>
+                    <div className={s.starRating}>
+                      <svg className={s.icon} width="22" height="22">
+                        <use href={`${sprite}#icon-star`} />
+                      </svg>
+                      <p className={s.reviewerRating}>{review.rating}</p>
+                    </div>
+                  </div>
                 </div>
                 <p className={s.comment}>{review.comment}</p>
               </div>
