@@ -11,6 +11,7 @@ const PsychologistsList = ({
   onOpenModal,
   onLoadMore,
   showLoadMore = true,
+  isLoading,
 }) => {
   const isEndOfList = visibleCount >= psychologists.length;
   return (
@@ -32,9 +33,9 @@ const PsychologistsList = ({
         </div>
       )}
 
-      {showLoadMore && isEndOfList && (
+      {showLoadMore && isEndOfList && !isLoading && (
         <div className={s.endWrapper}>
-          <p className={s.end}>End of the psychologists list. </p>
+          <p className={s.end}>End of the psychologists list.</p>
         </div>
       )}
     </ul>

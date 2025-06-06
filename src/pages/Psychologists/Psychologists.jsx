@@ -64,6 +64,7 @@ const Psychologists = () => {
         onToggle={toggleExpanded}
         onOpenModal={openModal}
         onLoadMore={() => setVisibleCount((prev) => prev + 3)}
+        isLoading={loading}
       />
 
       {isModalOpen && (
