@@ -57,24 +57,27 @@ const Appointment = ({ psychologist }) => {
             <ErrorMessage name="name" component="span" className={s.error} />
           </div>
           <div className={s.phone_time}>
-            <Field
-              type="tel"
-              name="phone"
-              placeholder="+380"
-              className={clsx(s.phone, s.inputPhoneTime, s.input)}
-            />
-            <ErrorMessage name="phone" component="span" className={s.error} />
-
-            <Field
-              type="time"
-              name="appointmentTime"
-              className={clsx(s.time, s.inputPhoneTime)}
-            />
-            <ErrorMessage
-              name="appointmentTime"
-              component="span"
-              className={s.error}
-            />
+            <div className={s.phone_appointment_wrapper}>
+              <Field
+                type="tel"
+                name="phone"
+                placeholder="+380"
+                className={clsx(s.phone, s.inputPhoneTime, s.input)}
+              />
+              <ErrorMessage name="phone" component="span" className={s.error} />
+            </div>
+            <div className={s.phone_appointment_wrapper}>
+              <Field
+                type="time"
+                name="appointmentTime"
+                className={clsx(s.time, s.inputPhoneTime)}
+              />
+              <ErrorMessage
+                name="appointmentTime"
+                component="span"
+                className={s.error}
+              />
+            </div>
           </div>
           <div className={s.fieldWrapper}>
             <Field

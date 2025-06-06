@@ -100,6 +100,10 @@
   line-height: 1;
 }
 
+.phone_appointment_wrapper {
+  display: flex;
+  flex-direction: column;
+}
 .input::placeholder {
   font-family: var(--font-family);
   font-weight: 400;
