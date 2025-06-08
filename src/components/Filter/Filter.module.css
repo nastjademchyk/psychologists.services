@@ -12,6 +12,7 @@
   line-height: 125%;
   color: #fbfbfb;
   border: none;
+  appearance: none;
 }
 
 .form {
@@ -48,4 +49,10 @@
   justify-content: center;
   margin-bottom: 100px;
   margin-top: 40px;
+}
+
+.icon {
+  stroke-width: 2px;
+  stroke: #fbfbfb;
+  fill: none;
 }
