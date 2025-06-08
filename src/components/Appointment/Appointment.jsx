@@ -2,6 +2,8 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import s from "./Appointment.module.css";
 import clsx from "clsx";
 import * as Yup from "yup";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const initialValues = {
   email: "",
@@ -27,6 +29,11 @@ const Appointment = ({ psychologist }) => {
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
+    iziToast.show({
+      message: "Request was successfully sent.",
+      position: "topCenter",
+      color: "green",
+    });
   };
   return (
     <div className={s.wrapper}>
@@ -37,8 +44,19 @@ const Appointment = ({ psychologist }) => {
         psychologist. We guarantee confidentiality and respect for your privacy.
       </p>
       <div className={s.yourChoice}>
-        <p className={s.psychologist}>Your psychologists</p>
-        <p className={s.psychologistName}>{psychologist.name}</p>
+        <div className={s.left}>
+          <img
+            src={psychologist.avatar_url}
+            alt={psychologist.name}
+            width={96}
+            height={96}
+            className={s.yourImageClass}
+          />
+        </div>
+        <div className={s.right}>
+          <p className={s.psychologist}>Your psychologists</p>
+          <p className={s.psychologistName}>{psychologist.name}</p>
+        </div>
       </div>
 
       <Formik
