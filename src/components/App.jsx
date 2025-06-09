@@ -2,16 +2,18 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
-import HomePage from "../pages/HomePage/HomePage";
-import Psychologists from "../pages/Psychologists/Psychologists";
-import Favorites from "../pages/Favorites/Favorites";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../redux/auth/operations";
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Loader from "./Loader/Loader";
 import { selectIsRefreshing } from "../redux/auth/selectors";
 
 function App() {
+  const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
+  const Psychologists = lazy(() =>
+    import("../pages/Psychologists/Psychologists.jsx")
+  );
+  const Favorites = lazy(() => import("../pages/Favorites/Favorites.jsx"));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
@@ -27,7 +29,7 @@ function App() {
     );
   }
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -36,7 +38,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
-    </>
+    </Suspense>
   );
 }
 
