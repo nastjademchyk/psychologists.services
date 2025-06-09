@@ -71,7 +71,10 @@ const Psychologists = () => {
 
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <Appointment psychologist={selectedPsychologist} />
+          <Appointment
+            psychologist={selectedPsychologist}
+            onClose={closeModal}
+          />
         </Modal>
       )}
     </div>

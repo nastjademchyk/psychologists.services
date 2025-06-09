@@ -10,7 +10,7 @@ import { selectUser } from "../../redux/auth/selectors";
 import Appointment from "../../components/Appointment/Appointment";
 import Modal from "../../components/Modal/Modal";
 
-const Favorites = () => {
+const Favorites = ({ onClose }) => {
   const allPsychologists = useSelector(selectPsychologists);
   const user = useSelector(selectUser);
   const [favoritesNames, setFavoritesNames] = useState([]);
@@ -71,7 +71,10 @@ const Favorites = () => {
       )}
       {modalOpen && selectedPsychologist && (
         <Modal onClose={handleCloseModal}>
-          <Appointment psychologist={selectedPsychologist} />
+          <Appointment
+            psychologist={selectedPsychologist}
+            onClose={handleCloseModal}
+          />
         </Modal>
       )}
     </div>

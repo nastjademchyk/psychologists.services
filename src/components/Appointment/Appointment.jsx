@@ -25,7 +25,7 @@ const FeedbackSchema = Yup.object().shape({
   textarea: Yup.string().required("Required"),
 });
 
-const Appointment = ({ psychologist }) => {
+const Appointment = ({ psychologist, onClose }) => {
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
@@ -34,6 +34,7 @@ const Appointment = ({ psychologist }) => {
       position: "topCenter",
       color: "green",
     });
+    onClose();
   };
   return (
     <div className={s.wrapper}>
