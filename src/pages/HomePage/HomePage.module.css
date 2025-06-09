@@ -130,16 +130,3 @@
   transform: rotate(-15deg);
   fill: #fbfbfb;
 }
-/* 
-.blur {
-  position: absolute;
-  top: 150px;
-  left: 600px;
-  width: 600px;
-  height: 600px;
-  background: rgba(84, 190, 150, 0.3);
-  filter: blur(200px);
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-} */

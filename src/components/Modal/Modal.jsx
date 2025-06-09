@@ -1,5 +1,4 @@
 import s from "./Modal.module.css";
-import sprite from "../../assets/icons.svg";
 import { useEffect } from "react";
 
 const Modal = ({ onClose, children }) => {

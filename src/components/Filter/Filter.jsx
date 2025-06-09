@@ -10,10 +10,10 @@ import { setFilter } from "../../redux/filters/filtersSlice";
 const options = [
   { value: "a-z", label: "A to Z" },
   { value: "z-a", label: "Z to A" },
-  { value: "lt-10", label: "Less than 10$" },
-  { value: "gt-10", label: "Greater than 10$" },
-  { value: "popular", label: "Popular" },
-  { value: "not-popular", label: "Not popular" },
+  { value: "low-high", label: "Price: Low to High" },
+  { value: "high-low", label: "Price: High to Low" },
+  { value: "popular-high-low", label: "Popular" },
+  { value: "popular-low-high", label: "Not popular" },
   { value: "all", label: "Show all" },
 ];
 

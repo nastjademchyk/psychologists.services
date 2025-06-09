@@ -3,15 +3,11 @@ import homex1 from "../../assets/images/home-x1.png";
 import homex2 from "../../assets/images/home-x2.png";
 import GetStartBtn from "../../components/GetStartBtn/GetStartBtn";
 import sprite from "../../assets/icons.svg";
-import { useState } from "react";
-import Register from "../../components/Register/Register";
-import Modal from "../../components/Modal/Modal";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
     <div className={s.container}>
-      {/* <div className={s.blur}></div> */}
       <div className={s.left}>
         <h1 className={s.header}>
           The road to the <span className={s.accent}>depths</span> of the human

@@ -45,7 +45,7 @@ const Register = ({ onClose }) => {
             color: "red",
           });
         } else if (errorCode === "auth/weak-password") {
-          alert("Пароль занадто слабкий (мінімум 6 символів).");
+          alert("The password is too weak (minimum 6 characters).");
         } else {
           iziToast.show({
             message: "An error occurred during registration.",
@@ -61,7 +61,7 @@ const Register = ({ onClose }) => {
         });
       }
     } catch (error) {
-      alert("Сталася помилка при реєстрації.");
+      alert("An error occurred during registration.");
     }
   };
   return (
