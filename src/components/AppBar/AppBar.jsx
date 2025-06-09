@@ -40,8 +40,7 @@ const AppBar = () => {
 
       navigate("/");
     } catch (error) {
-      console.error("Помилка при виході:", error);
-      alert("Не вдалося вийти. Спробуйте ще раз.");
+      alert("Failed to log out. Please try again.");
     }
   };
 
