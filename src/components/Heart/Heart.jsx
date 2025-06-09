@@ -1,27 +1,33 @@
 import s from "./Heart.module.css";
 import sprite from "../../assets/icons.svg";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 
 const Heart = ({ psychologist }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  if (!psychologist) {
-    return null;
-  }
-  const { name } = psychologist;
+  const user = useSelector(selectUser);
 
-  const [isFavorite, setIsFavorite] = useState(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    return favorites.includes(name);
-  });
+  if (!psychologist) return null;
+
+  const { name } = psychologist;
+  const userKey = user ? `favorites_${user.email}` : null;
+
+  useEffect(() => {
+    if (userKey) {
+      const favorites = JSON.parse(localStorage.getItem(userKey)) || [];
+      setIsFavorite(favorites.includes(name));
+    } else {
+      setIsFavorite(false);
+    }
+  }, [userKey, name]);
 
   const toggleFavorite = () => {
-    if (!isLoggedIn) {
+    if (!isLoggedIn || !userKey) {
       iziToast.show({
         message: "Please log in or sign up to add to favorites.",
         position: "topCenter",
@@ -30,12 +36,13 @@ const Heart = ({ psychologist }) => {
       return;
     }
 
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const favorites = JSON.parse(localStorage.getItem(userKey)) || [];
+
     const updatedFavorites = favorites.includes(name)
       ? favorites.filter((n) => n !== name)
       : [...favorites, name];
 
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    localStorage.setItem(userKey, JSON.stringify(updatedFavorites));
     setIsFavorite(!isFavorite);
   };
 
