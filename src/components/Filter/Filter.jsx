@@ -3,6 +3,9 @@ import { useId } from "react";
 import s from "./Filter.module.css";
 import Select, { components } from "react-select";
 import sprite from "../../assets/icons.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSortBy } from "../../redux/filters/selectors";
+import { setFilter } from "../../redux/filters/filtersSlice";
 
 const options = [
   { value: "a-z", label: "A to Z" },
@@ -33,13 +36,12 @@ const DropdownIndicator = (props) => {
 };
 
 const Filter = ({ onChange }) => {
+  const dispatch = useDispatch();
+  const sortBy = useSelector(selectSortBy);
   const filterId = useId();
-
+  const selectedOption = options.find((opt) => opt.value === sortBy);
   return (
-    <Formik
-      initialValues={{ filter: options.find((opt) => opt.value === "all") }}
-      onSubmit={() => {}}
-    >
+    <Formik initialValues={{ filter: selectedOption }} onSubmit={() => {}}>
       {({ setFieldValue, values }) => (
         <Form className={s.form}>
           <label htmlFor={filterId} className={s.text}>
@@ -55,6 +57,7 @@ const Filter = ({ onChange }) => {
             components={{ DropdownIndicator }}
             onChange={(selectedOption) => {
               setFieldValue("filter", selectedOption);
+              dispatch(setFilter(selectedOption.value));
               if (onChange) {
                 onChange(selectedOption.value);
               }

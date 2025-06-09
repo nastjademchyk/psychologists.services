@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPsychologists } from "../../redux/psychologists/operations";
 import Modal from "../../components/Modal/Modal";
 import Appointment from "../../components/Appointment/Appointment";
-import PsychologistCard from "../../components/PsychologistCard/PsychologistCard";
+import sortPsychologists from "../../utils/sortPsychologists";
+
 import Loader from "../../components/Loader/Loader";
 import {
   selectPsychologists,
   selectIsLoading,
   selectError,
 } from "../../redux/psychologists/selectors";
-import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
-import Heart from "../../components/Heart/Heart";
 import Filter from "../../components/Filter/Filter";
 import PsychologistsList from "../../components/PsychologistsList/PsychologistsList";
+import { selectSortBy } from "../../redux/filters/selectors";
 
 const Psychologists = () => {
   const [expandedIndexes, setExpandedIndexes] = useState([]);
@@ -26,6 +26,8 @@ const Psychologists = () => {
   const items = useSelector(selectPsychologists);
   const loading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const sortBy = useSelector(selectSortBy);
+  const filteredItems = sortPsychologists(items, sortBy);
 
   useEffect(() => {
     dispatch(fetchPsychologists());
@@ -49,7 +51,7 @@ const Psychologists = () => {
 
   return (
     <div>
-      {!loading && visibleCount < items.length && <Filter />}
+      {!loading && items.length > 0 && <Filter />}
 
       {loading && <Loader />}
       {error && <p>Error: {error}</p>}
@@ -58,7 +60,7 @@ const Psychologists = () => {
       )}
 
       <PsychologistsList
-        psychologists={items}
+        psychologists={filteredItems}
         visibleCount={visibleCount}
         expandedIndexes={expandedIndexes}
         onToggle={toggleExpanded}

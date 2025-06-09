@@ -7,7 +7,6 @@ const PsychologistCard = ({
   isExpanded,
   onToggle,
   onOpenModal,
-  psychologistIndex,
 }) => {
   return (
     <li className={s.item}>
