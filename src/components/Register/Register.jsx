@@ -35,7 +35,7 @@ const Register = ({ onClose }) => {
       if (register.fulfilled.match(resultAction)) {
         actions.resetForm();
         if (onClose) onClose();
-        navigate("/favorites");
+        navigate("/psychologists");
       } else if (register.rejected.match(resultAction)) {
         const errorCode = resultAction.payload?.code;
         if (errorCode === "auth/email-already-in-use") {
