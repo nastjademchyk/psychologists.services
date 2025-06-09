@@ -10,6 +10,7 @@ Detailed technical assignment (Ukrainian version): [Technical Task](https://docs
 
 - React
 - React Router
+- Redux Toolkit
 - Firebase Authentication & Realtime Database
 - React Hook Form & Yup
 
@@ -22,21 +23,28 @@ Detailed technical assignment (Ukrainian version): [Technical Task](https://docs
 - `axios` — for making HTTP requests
 - `formik` — for form management
 - `yup` — for validation
-
-## 🧩 Features
+- `react-hot-toast & izitoast` — notifications
+- `clsx` — conditional classNames
+- `modern-normalize` — CSS reset
+- `react-select` — custom select components
 
 ## 🔀 Routes
 
 List of main app routes:
 
 - `/` — Home
+- `/psychologists` - List of psychologists with filtering and booking options
+- `/favorites` - User's saved psychologists
 - `*` — 404 Not Found
 
 ## 🚀 Getting Started
 
 1. **Clone the repository**
+   git clone https://github.com/nastjademchyk/psychologists.services.git
+   cd psychologists.services
 
 ## 👩‍💻 Author:
 
-name - Anastasiia Demchyk email - NastjaDemchyk@gmail.com gitHub -
-https://github.com/nastjademchyk
+- **Name**: Anastasiia Demchyk
+- **Email**: [NastjaDemchyk@gmail.com](mailto:NastjaDemchyk@gmail.com)
+- **GitHub**: [@nastjademchyk](https://github.com/nastjademchyk)
