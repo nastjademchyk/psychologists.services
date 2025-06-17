@@ -7,6 +7,7 @@ const PsychologistCard = ({
   isExpanded,
   onToggle,
   onOpenModal,
+  onRemoveFavorite,
 }) => {
   return (
     <li className={s.item}>
@@ -43,7 +44,10 @@ const PsychologistCard = ({
               Price / 1 hour:{" "}
               <span className={s.price}>{psychologist.price_per_hour}$</span>
             </p>
-            <Heart psychologist={psychologist} />
+            <Heart
+              psychologist={psychologist}
+              onRemoveFavorite={onRemoveFavorite}
+            />
           </div>
         </div>
 

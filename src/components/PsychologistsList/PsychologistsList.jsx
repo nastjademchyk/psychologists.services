@@ -12,6 +12,7 @@ const PsychologistsList = ({
   onLoadMore,
   showLoadMore = true,
   isLoading,
+  onRemoveFavorite,
 }) => {
   const isEndOfList = visibleCount >= psychologists.length;
   return (
@@ -24,7 +25,7 @@ const PsychologistsList = ({
           onToggle={() => onToggle(index)}
           onOpenModal={onOpenModal}
           psychologistIndex={index}
-          HeartComponent={<Heart psychologist={psychologist} />}
+          onRemoveFavorite={onRemoveFavorite}
         />
       ))}
       {showLoadMore && visibleCount < psychologists.length && (

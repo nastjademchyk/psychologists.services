@@ -7,7 +7,7 @@ import "izitoast/dist/css/iziToast.min.css";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 
-const Heart = ({ psychologist }) => {
+const Heart = ({ psychologist, onRemoveFavorite }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
@@ -44,6 +44,10 @@ const Heart = ({ psychologist }) => {
 
     localStorage.setItem(userKey, JSON.stringify(updatedFavorites));
     setIsFavorite(!isFavorite);
+
+    if (favorites.includes(name) && typeof onRemoveFavorite === "function") {
+      onRemoveFavorite(name);
+    }
   };
 
   return (

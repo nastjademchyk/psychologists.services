@@ -10,7 +10,7 @@ import Appointment from "../../components/Appointment/Appointment";
 import Modal from "../../components/Modal/Modal";
 import PsychologistsList from "../../components/PsychologistsList/PsychologistsList";
 
-const Favorites = ({ onClose }) => {
+const Favorites = ({ onClose, onRemoveFavorite }) => {
   const allPsychologists = useSelector(selectPsychologists);
   const user = useSelector(selectUser);
   const [favoritesNames, setFavoritesNames] = useState([]);
@@ -50,6 +50,9 @@ const Favorites = ({ onClose }) => {
     setModalOpen(false);
   };
 
+  const handleRemoveFavorite = (nameToRemove) => {
+    setFavoritesNames((prev) => prev.filter((name) => name !== nameToRemove));
+  };
   const filteredFavorites = sortPsychologists(favoritePsychologists, sortBy);
   return (
     <div className={s.wrapper}>
@@ -66,6 +69,7 @@ const Favorites = ({ onClose }) => {
           onLoadMore={() => setVisibleCount((prev) => prev + 3)}
           showLoadMore={true}
           isLoading={false}
+          onRemoveFavorite={handleRemoveFavorite}
         />
       )}
       {modalOpen && selectedPsychologist && (
