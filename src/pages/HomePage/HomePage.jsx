@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <div className={s.container}>
+      <div className={s.ellipse}></div>
       <div className={s.left}>
         <h1 className={s.header}>
           The road to the <span className={s.accent}>depths</span> of the human

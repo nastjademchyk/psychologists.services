@@ -130,3 +130,16 @@
   transform: rotate(-15deg);
   fill: #fbfbfb;
 }
+
+.ellipse {
+  position: fixed;
+  width: 469px;
+  height: 469px;
+  top: 468px;
+  left: 1009px;
+  background: rgba(84, 190, 150, 0.5);
+  filter: blur(1000px);
+  border-radius: 16%;
+  z-index: -1;
+  pointer-events: none;
+}

@@ -39,6 +39,8 @@
 
 body {
   background: #f3f3f3;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 h1,
